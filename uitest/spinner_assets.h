@@ -135,10 +135,10 @@ static const PROGMEM prog_uchar __assets[2026] = {
 141, 9, 51, 141, 65, 50, 111, 38, 204, 54, 199, 248, 47, 232, 3, 158,
 171
 };
-#define LOAD_ASSETS()  GD.copy(__assets, sizeof(__assets))
-#define SPINNER_HANDLE 0
-#define SPINNER_WIDTH 90
-#define SPINNER_HEIGHT 30
-#define SPINNER_CELLS 12
-#define ASSETS_END 64800UL
-static const shape_t SPINNER_SHAPE = {0, 90, 30, 0};
+#define SPIN_LOAD_ASSETS()  GD.copy(__assets, sizeof(__assets))
+#define SPIN_SPINNER_HANDLE 0
+#define SPIN_SPINNER_WIDTH 90
+#define SPIN_SPINNER_HEIGHT 30
+#define SPIN_SPINNER_CELLS 12
+#define SPIN_ASSETS_END 64800UL
+static const shape_t SPIN_SPINNER_SHAPE = {0, 90, 30, 0};
