@@ -10,8 +10,8 @@
 //   Best Performance: both pins have interrupt capability
 //   Good Performance: only the first pin has interrupt capability
 //   Low Performance:  neither pin has interrupt capability
-Encoder knobLeft(2, 3);
-Encoder knobRight(5, 6);
+Encoder knobLeft(18, 19);
+Encoder knobRight(20, 21);
 //   avoid using pins with LEDs attached
 
 void setup() {
@@ -29,7 +29,7 @@ void loop() {
   if (newLeft != positionLeft || newRight != positionRight) {
     //Serial.print("Left = ");
     char buff[24];
-    sprintf(buff, "%ld,%ld,", newLeft, newRight);
+    sprintf(buff, "%ld,%ld,", newLeft/2, newRight/2);
     //Serial.print(newLeft);
     //Serial.print(",");
     //Serial.print(", Right = ");
