@@ -43,11 +43,21 @@ void loop()
   newLeft = knobLeft.read();
   newRight = knobRight.read();
   if (newLeft != positionLeft || newRight != positionRight) {
+
+    if(newLeft <= 0) {
+      newLeft = 0;
+      knobLeft.write(0);
+    }
+    if(newRight <= 0) {
+      newRight = 0;
+      knobRight.write(0);  
+    }
     
-    sprintf(buff, "%ld,%ld,", newLeft/2, newRight/2);
-    Serial.println(buff);
     positionLeft = newLeft;
-    positionRight = newRight;
+    positionRight = newRight;  
+    
+    sprintf(buff, "%ld.%ld", newLeft/2, newRight/2);
+    Serial.println(buff);
   }
 
   //Drive stepper motor
