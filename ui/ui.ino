@@ -70,16 +70,17 @@ void loop()
   digitalWrite(dirpin, HIGH);     // Set the direction.
   
   unsigned long currentMillis = millis();
- 
-  if(currentMillis - previousMillis > timeBetweenSteps) {
-    // save the last time you blinked the LED 
-    previousMillis = currentMillis;
-  
-    for (int i = 0; i<10; i++)     // number of microsteps at one time  
-    {
-      digitalWrite(steppin, LOW); 
-      digitalWrite(steppin, HIGH); // Creates 'rising edge'
-      delayMicroseconds(5000); //motor speed     
+  if(running) {
+    if(currentMillis - previousMillis > (timeBetweenSteps-positionLeft)) {
+      // save the last time you blinked the LED 
+      previousMillis = currentMillis;
+    
+      for (int i = 0; i<10; i++)     // number of microsteps at one time  
+      {
+        digitalWrite(steppin, LOW); 
+        digitalWrite(steppin, HIGH); // Creates 'rising edge'
+        delayMicroseconds(500); //motor speed     
+      }
     }
   }
   
@@ -132,7 +133,7 @@ void loop()
   GD.cmd_text(140,175+offset1, 31, OPT_CENTERX,"Start");
   
   GD.Tag(2);
-  GD.ColorRGB(0xff0000);
+  GD.ColorRGB(0xff2e18);
   if(pressed == 2) {
     GD.Vertex2ii(230,174,BUTTON1_HANDLE);
     offset2=4;
