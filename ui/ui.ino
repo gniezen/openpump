@@ -34,6 +34,8 @@ void loop()
   GD.Vertex2ii(x, 200);
   */
   
+  GD.cmd_button(20,150,190,50,28,OPT_FLAT,"Button");
+  
   GD.Begin(BITMAPS);
   /*
   GD.Vertex2ii(240, 110, SPINNER_HANDLE, i);
@@ -41,17 +43,22 @@ void loop()
   if(i>11)
     i = 0;
   */
+  //GD.cmd_spinner(50,50,1,0);
 
-  GD.Vertex2ii(240,110,GREY_PANEL_HANDLE);
+  //GD.Vertex2ii(240,110,GREY_PANEL_HANDLE);
+  
+  
+  
+  pressed = GD.inputs.tag;
   
   GD.Tag(1);
   if(pressed == 1) {
-    GD.Vertex2ii(250,120,GREEN_BUTTON03_HANDLE);
+    GD.Vertex2ii(250,124,BUTTON1_HANDLE);
   }else{
-    GD.Vertex2ii(250,120,GREEN_BUTTON02_HANDLE);
+    GD.Vertex2ii(250,120,BUTTON0_HANDLE);
   }
  
-  pressed = GD.inputs.tag;
+  
   
   GD.swap();
 }
