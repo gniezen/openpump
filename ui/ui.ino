@@ -5,20 +5,37 @@
 //#include "spinner_assets.h"
 #include "default_assets.h"
 
+int dirpin = 30;
+int steppin = 32;
+
 int i = 0;
   int pressed = 0;
 
 void setup()
 {
+  // Set up stepper motor driver
+  pinMode(dirpin, OUTPUT);     
+  pinMode(steppin, OUTPUT);
+  
+  //Set up graphics
   GD.begin();
   LOAD_ASSETS();
 }
 
 void loop()
 {
+  //Drive stepper motor
   
-
+  digitalWrite(dirpin, HIGH);     // Set the direction.
+  delay(1000); //time between steps in ms
   
+  for (int i = 0; i<10; i++)     // number of microsteps at one time  
+  {
+    digitalWrite(steppin, LOW); 
+    digitalWrite(steppin, HIGH); // Creates 'rising edge'
+    delayMicroseconds(5000); //motor speed     
+  }
+    
   //GD.ClearColorRGB(0x103000);
   GD.get_inputs();
   GD.Clear();
