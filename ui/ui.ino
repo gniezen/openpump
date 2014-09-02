@@ -1,6 +1,7 @@
 #include <EEPROM.h>
 #include <SPI.h>
 #include <GD2.h>
+#include <Encoder.h>
 
 //#include "spinner_assets.h"
 #include "default_assets.h"
@@ -8,8 +9,20 @@
 int dirpin = 30;
 int steppin = 32;
 
+//   Best Performance: both pins have interrupt capability
+//   Good Performance: only the first pin has interrupt capability
+//   Low Performance:  neither pin has interrupt capability
+Encoder knobLeft(18, 19);
+Encoder knobRight(20, 21);
+
 int i = 0;
-  int pressed = 0;
+int pressed = 0;
+long positionLeft  = -999;
+long positionRight = -999;
+char buff[24];
+
+long timeBetweenSteps = 1000;  // in ms
+long previousMillis = 0;
 
 void setup()
 {
@@ -24,22 +37,43 @@ void setup()
 
 void loop()
 {
+  Serial.begin(9600);
+  
+  long newLeft, newRight;
+  newLeft = knobLeft.read();
+  newRight = knobRight.read();
+  if (newLeft != positionLeft || newRight != positionRight) {
+    
+    sprintf(buff, "%ld,%ld,", newLeft/2, newRight/2);
+    Serial.println(buff);
+    positionLeft = newLeft;
+    positionRight = newRight;
+  }
+
   //Drive stepper motor
   
   digitalWrite(dirpin, HIGH);     // Set the direction.
-  delay(1000); //time between steps in ms
   
-  for (int i = 0; i<10; i++)     // number of microsteps at one time  
-  {
-    digitalWrite(steppin, LOW); 
-    digitalWrite(steppin, HIGH); // Creates 'rising edge'
-    delayMicroseconds(5000); //motor speed     
+  unsigned long currentMillis = millis();
+ 
+  if(currentMillis - previousMillis > timeBetweenSteps) {
+    // save the last time you blinked the LED 
+    previousMillis = currentMillis;
+  
+    for (int i = 0; i<10; i++)     // number of microsteps at one time  
+    {
+      digitalWrite(steppin, LOW); 
+      digitalWrite(steppin, HIGH); // Creates 'rising edge'
+      delayMicroseconds(5000); //motor speed     
+    }
   }
+  
+  // Graphics
     
   //GD.ClearColorRGB(0x103000);
   GD.get_inputs();
   GD.Clear();
-  GD.cmd_text(240, 68, 31, OPT_CENTER, "56.7 mL/h");
+  GD.cmd_text(240, 68, 31, OPT_CENTER, buff);
   
   /*
   GD.Begin(POINTS); // draw 50-pixel wide green circles
