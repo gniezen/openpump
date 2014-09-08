@@ -1,6 +1,6 @@
 # Openpump: the open source hardware syringe pump
 
-Openpump is an open-source syringe pump that dispenses fluids over a set period of time. Syringe pumps are used to administer medication in hospitals, but also in laboratory environments performing chemical or biomedical research. Maybe you'd like to use syringe pump to extruding paste (e.g. chocolate) during 3D printing, or as part of a bioprinter when printing with biological materials?
+[Openpump](http://www.openpump.org) is an open-source syringe pump that dispenses fluids over a set period of time. Syringe pumps are used to administer medication in hospitals, but also in laboratory environments performing chemical or biomedical research. Maybe you'd like to use syringe pump to extruding paste (e.g. chocolate) during 3D printing, or as part of a bioprinter when printing with biological materials?
 
 Openpump is a collaboratively designed general-purpose syringe pump platform that can be customised for different domains. Making the hardware design available under an open source license allows anyone to improve and contribute to the device design. It also enables the design to be modified for very specific use cases and makes the devices easy to repair.
 
