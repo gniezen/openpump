@@ -15,7 +15,7 @@ To render the different 3D parts in `linear_actuator_v0.scad`:
 * I had best results printing the idler end (part 2, `end_idler`) with support material.
 
 ### Building the mechanical design
-The step-by-step build instructions with pictures are over on [Dozuki](http://openpump.dozuki.com/c/Build_instructions).
+The step-by-step build instructions with pictures are in the [Building the syringe pump guide](http://openpump.dozuki.com/c/Build_instructions).
 
 ### Building the electronics
 To build the electronics, you need the following components:

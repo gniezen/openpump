@@ -398,7 +398,7 @@ module clamp_syringe_pump() {
 		end_mount_holes(t_syringe_clamp + 1, d_M3_screw);
 
 		translate([0, 0, t_syringe_clamp / 2])
-			end_mount_holes(h_M3_nut * 2, d_M3_nut+0.5, 6); //TODO: remove this if d_M3_nut is enlarged
+			end_mount_holes(h_M3_nut * 2, d_M3_nut+0.3, 6); //TODO: remove this if d_M3_nut is enlarged
 
 		// guide rods
 		for (i = [-1, 1])
