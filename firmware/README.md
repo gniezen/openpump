@@ -1,5 +1,8 @@
+# Openpump: Firmware
 
-## Setup
+## Working with Gameduino 2
+
+### Setup
 Prerequisites:
 - Install PIL using `sudo pip install pil` 
 - Install Gameduino 2 asset converter and Python libraries using `sudo pip install gameduino2`
