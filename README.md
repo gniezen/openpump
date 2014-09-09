@@ -31,6 +31,7 @@ Because the Mega2560 has its SPI pins in a different place, you need to make 3 w
 
 You can solder these three wires directly to the pins underneath the Mega.
 
+To view the circuit schematic (with breadboard views), use the awesome open source hardware design tool [Fritzing](http://fritzing.org/).
 
 ## Licenses
 
