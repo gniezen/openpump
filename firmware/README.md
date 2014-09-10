@@ -4,7 +4,7 @@
 
 To get this up and running in your Arduino environment, you need two libraries:
 - [Encoder](https://www.pjrc.com/teensy/td_libs_Encoder.html)
-- [Gameduino2]
+- [Gameduino 2](http://excamera.com/files/Gameduino2.zip)
 
 Install it in the Arduino environment using the [official instructions](http://arduino.cc/en/Guide/Libraries).
 
