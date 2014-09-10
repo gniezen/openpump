@@ -33,6 +33,10 @@ You can solder these three wires directly to the pins underneath the Mega.
 
 To view the circuit schematic (with breadboard views), use the awesome open source hardware design tool [Fritzing](http://fritzing.org/).
 
+## Installing the firmware
+
+To get the firmware running on your Arduino, have a look at the [documentation](firmware/README.md) in the `firmware` folder. 
+
 ## Licenses
 
 ### Software and firmware
