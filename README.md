@@ -35,7 +35,7 @@ To view the circuit schematic (with breadboard views), use the awesome open sour
 
 ## Installing the firmware
 
-To get the firmware running on your Arduino, have a look at the documentation in the [firmware](firmware/] folder. 
+To get the firmware running on your Arduino, have a look at the documentation in the [firmware](firmware/) folder. 
 
 ## Licenses
 
