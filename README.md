@@ -7,7 +7,11 @@ Openpump is a collaboratively designed general-purpose syringe pump platform tha
 ## Setup
 
 ### Rendering the 3D parts
+<<<<<<< HEAD
 The 3D-printed parts were designed in [OpenSCAD](http://www.openscad.org/). (To learn how to use OpenSCAD, see [the Openpump blog](http://blog.openpump.org/how-to-design-a-3d-printed-enclosure-for-your-product/)). To render the different 3D parts in `linear_actuator_v0.scad`:
+=======
+The mechanical/CAD design of Openpump is based on work by Bas Wijnen, Emily Hunt, Gerald Anzalone and Joshua Pearce of  [Michigan Tech Open Sustainaibility Lab](http://www.appropedia.org/Open-source_syringe_pump). The 3D-printed parts were designed in [OpenSCAD](http://www.openscad.org/). (To learn how to use OpenSCAD, see [the Openpump blog](http://blog.openpump.org/how-to-design-a-3d-printed-enclosure-for-your-product/)). To render the different 3D parts in `linear_actuator_v0.scad`:
+>>>>>>> FETCH_HEAD
 * Install the [MOST SCAD libraries](https://github.com/mtu-most/most-scad-libraries) by downloading them as a zip file and adding to OpenSCAD path using `export OPENSCADPATH=`<*your local path*> (in `~/.profile` on Ubuntu), or using `File->Show Library Folder` to add them to your OpenSCAD library.
 * Change `render_part()` to the 3D part you want to render. You need `end_motor` (1), `end_idler` (2), `carriage_syringe_pump` (4), `clamp_syringe_pump` (5) and `syringe_plunger_retainer` (7) at a minimum.
 * Before printing the syringe holder (part 5, `clamp_syringe_pump`), set the variable `d_syringe` to the be the same as the diameter of the syringe body you're using.
