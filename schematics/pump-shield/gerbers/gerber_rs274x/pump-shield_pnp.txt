@@ -1,0 +1,31 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=pump-shield
+*Date=15:06:50
+*CreatedBy=Fritzing 0.8.7b.01.24.1bf5
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;29.6337;-12.5163;-90;Bottom;TXT2
+2;;;9.51662;-29.2184;0;Bottom;POLOLU
+3;;THT;9.38962;-50.8084;-90;Bottom;ENCODER
+4;;;5.5796;-22.8685;0;Bottom;Via4
+5;;;23.5316;-5.2296;0;Bottom;TXT1
+6;;;5.5796;-20.3285;0;Bottom;Via3
+7;;;18.2796;-38.1084;0;Bottom;Via2
+8;;;13.1996;-22.8685;0;Bottom;Via1
+9;;THT;23.3596;-13.9784;0;Bottom;DIGITAL
+10;;THT;23.3596;-45.7284;0;Bottom;M1
+11;;;9.61034;-43.1848;0;Bottom;IMG1
+12;;THT;11.9296;-2.5484;90;Bottom;ANALOG
+13;;;26.6299;-29.0279;180;Bottom;2.5-10.8V
+14;;;11.1658;-7.23418;0;Bottom;IMG2
+15;;THT;6.84962;-12.7084;-90;Bottom;STEPPER
+16;0.1mF;100 mil [THT, electrolytic];17.0096;-15.2484;180;Bottom;100uF
