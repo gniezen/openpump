@@ -4,7 +4,7 @@
 *eMail=
 *
 *Project=pump-shield
-*Date=15:43:25
+*Date=11:31:35
 *CreatedBy=Fritzing 0.9.0b.06.11.da4e
 *
 *
@@ -14,18 +14,18 @@
 *
 *No;Value;Package;X;Y;Rotation;Side;Name
 1;;THT;9.38962;-50.8084;-90;Bottom;ENCODER
-2;0.1mF;100 mil [THT, electrolytic];17.0096;-15.2484;180;Bottom;100uF
-3;;THT;23.3596;-13.9784;0;Bottom;DIGITAL
-4;;;29.6337;-12.5162;-90;Bottom;TXT2
-5;;;5.5796;-22.8685;0;Bottom;Via4
-6;;THT;23.3596;-45.7284;0;Bottom;M1
-7;;;13.1996;-22.8685;0;Bottom;Via1
+2;;THT;11.9296;-2.5484;90;Bottom;ANALOG
+3;;;5.5796;-22.8685;0;Bottom;Via4
+4;;;23.5316;-5.2296;0;Bottom;TXT1
+5;;THT;23.3596;-45.7284;0;Bottom;M1
+6;;;11.319;-7.08187;0;Bottom;IMG2
+7;;;29.6337;-12.5162;-90;Bottom;TXT2
 8;;THT;6.84962;-12.7084;-90;Bottom;STEPPER
-9;;;23.5316;-5.2296;0;Bottom;TXT1
-10;;;11.319;-7.08199;0;Bottom;IMG2
-11;;;5.5796;-20.3285;0;Bottom;Via3
-12;;;9.51662;-29.2184;0;Bottom;POLOLU
-13;;;9.61034;-43.1848;0;Bottom;IMG1
-14;;;26.6299;-29.0279;180;Bottom;2.5-10.8V
-15;;;18.2796;-38.1084;0;Bottom;Via2
-16;;THT;11.9296;-2.5484;90;Bottom;ANALOG
+9;;;9.61034;-43.1848;0;Bottom;IMG1
+10;0.1mF;100 mil [THT, electrolytic];17.0096;-15.2484;180;Bottom;100uF
+11;;;9.51662;-29.2184;0;Bottom;POLOLU
+12;;THT;23.3596;-13.9784;0;Bottom;DIGITAL
+13;;;13.1996;-22.8685;0;Bottom;Via1
+14;;;5.5796;-20.3285;0;Bottom;Via3
+15;;;26.6299;-29.0279;180;Bottom;2.5-10.8V
+16;;;18.2796;-38.1084;0;Bottom;Via2
