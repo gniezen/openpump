@@ -21,13 +21,12 @@
 #include <GD2.h>
 #include <Encoder.h>
 
-//#include "spinner_assets.h"
 #include "default_assets.h"
 
 int dirpin = 30;
 int steppin = 32;
 
-// Rotoary encoder best performance: both pins have interrupt capability
+// Rotary encoder best performance: both pins have interrupt capability
 Encoder knobLeft(18, 19);
 Encoder knobRight(20, 21);
 
@@ -35,7 +34,6 @@ int i = 0;
 int pressed = 0;
 long positionLeft  = -999;
 long positionRight = -999;
-//char buff[24];
 
 long timeBetweenSteps = 1000;  // in ms
 long previousMillis = 0;
