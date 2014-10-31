@@ -116,8 +116,12 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 	enclosureDepth = pcbDim[1] + (wall + offset) * 2;
 	enclosureHeight = boardDim[2] + wall + standOffHeight + heightExtension;
 
-    gameduinoHeight = enclosureHeight/2;
-    gameduinoWidth = enclosureDepth/2;
+    gdHeight = enclosureHeight *0.4;
+    gdOffset = (enclosureHeight * 0.7)-wall;
+    gdWidth = 68;
+    gdLength = 106;
+    gdXOffset = gdLength-13;
+    gdYOffset = 35-wall-offset;
 
 	union() {
 		difference() {
@@ -150,9 +154,10 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 			}
 
             //remove section for Gameduino
-            translate([enclosureWidth,gameduinoWidth,gameduinoHeight+offset]){
+            translate([gdXOffset,gdYOffset,gdOffset]){
 			    rotate([0,0,90])
-                    boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);    
+                    //boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);  
+                    roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
             }
 	 
 		}
@@ -162,22 +167,25 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 
 
         difference() {		
-		    translate([enclosureWidth,enclosureDepth/2,gameduinoHeight]){
+		    translate([gdXOffset,gdYOffset,gdOffset]){
 			    rotate([0,0,90]) { 
 				    difference(){
 					    //Gameduino Box
-					    boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);
-
+					    //boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);
+                        roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
+                        
 					    //Interior of Gameduino box
-					    translate([ 0, 0, wall]) {
-						    boundingBox(boardType = boardType, height = gameduinoHeight, offset = offset, cornerRadius = wall);
+					    translate([ wall, wall, wall]) {
+						    //boundingBox(boardType = boardType, height = gameduinoHeight, offset = offset, cornerRadius = wall);
+						    roundedCube( [gdWidth,gdLength,gdHeight], cornerRadius=wall);
+                            
 					    }
                     }
 			    }
 		    }
 
-            //Removing main box section from Gameduino 
-       		boundingBox(boardType = boardType, height = enclosureHeight+offset, offset = offset, include=PCB, cornerRadius = wall);
+            //Removing main box section from Gameduino box
+       		boundingBox(boardType = boardType, height = enclosureHeight+gdOffset, offset = offset, include=PCB, cornerRadius = wall);
 
 
         }
