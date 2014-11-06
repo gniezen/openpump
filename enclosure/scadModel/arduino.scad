@@ -104,6 +104,14 @@ NOMOUNTINGHOLES = 0;
 INTERIORMOUNTINGHOLES = 1;
 EXTERIORMOUNTINGHOLES = 2;
 
+module prism(l, w, h) {
+	linear_extrude(height = l) polygon(points = [
+		[0, 0],
+		[w, 0],
+		[0, h]
+	], paths=[[0,1,2,0]]);
+}
+
 //Create a board enclosure
 module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, cornerRadius = 3, mountType = TAPHOLE) {
 	standOffHeight = 5;
@@ -172,8 +180,22 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 				    difference(){
 					    //Gameduino Box
 					    //boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);
-                        roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
+
                         
+                        //hull()    {
+                        roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
+
+                        //add support underneath
+
+/*
+                        translate([0,-enclosureWidth+gdXOffset+(wall*2),0])
+                            rotate([-90,0,-90])
+                                minkowski() {
+                                	prism(gdWidth+(wall*2),gdXOffset-enclosureWidth+(wall*2) , gdOffset); //l,w,h
+                                    circle(r=wall,h=1);
+                                }
+                        }
+*/                      
 					    //Interior of Gameduino box
 					    translate([ wall, wall, wall]) {
 						    //boundingBox(boardType = boardType, height = gameduinoHeight, offset = offset, cornerRadius = wall);
@@ -191,6 +213,34 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
         }
         
 	}
+
+
+    //right hand supports    
+    translate([enclosureWidth-offset-cornerRadius,gdYOffset+wall,gdOffset+1]) 
+        rotate([-90,0,0]) {
+            
+            minkowski() {
+               	prism(gdWidth,gdXOffset-enclosureWidth+cornerRadius , gdOffset); //l,w,h
+    
+                translate([0,1,0])
+	                rotate([90,90,0])
+                       	cylinder(r=cornerRadius,h=1,$fn=32);
+            }
+    }
+
+    //left hand supports
+
+   translate([-offset-wall,gdWidth+gdYOffset+wall,gdOffset+1]) 
+        rotate([-90,0,180]) {
+            
+            minkowski() {
+               	prism(gdWidth,offset+1+wall+cornerRadius , gdOffset); //l,w,h
+    
+                translate([0,1,0])
+	                rotate([90,90,0])
+                       	cylinder(r=cornerRadius,h=1,$fn=32);
+            }
+    }
 
 }
 
