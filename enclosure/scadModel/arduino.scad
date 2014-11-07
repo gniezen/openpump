@@ -22,7 +22,11 @@
 
 include <pins.scad>
 
-enclosure(MEGA2560);
+difference() {
+	enclosure(MEGA2560);
+	translate([-50,-50,-20])
+	cube([200,200,50]);
+}
 
 //Constructs a roughed out arduino board
 //Current only USB, power and headers
@@ -126,8 +130,8 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 
     gdHeight = enclosureHeight *0.4;
     gdOffset = (enclosureHeight * 0.7)-wall;
-    gdWidth = 68;
-    gdLength = 106;
+    gdWidth = 70;
+    gdLength = 110;
     gdXOffset = gdLength-32;
     gdYOffset = 0;
 
