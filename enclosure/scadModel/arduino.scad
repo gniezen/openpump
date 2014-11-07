@@ -22,7 +22,12 @@
 
 include <pins.scad>
 
-enclosure(MEGA2560);
+gdWidth = 70;
+gdLength = 110;
+gdXOffset = gdLength-29;
+gdYOffset = 0;
+
+enclosureLid(MEGA2560);
 
 //Constructs a roughed out arduino board
 //Current only USB, power and headers
@@ -126,12 +131,8 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 
 	gdHeight = enclosureHeight *0.4;
 	gdOffset = (enclosureHeight * 0.7)-wall;
-	gdWidth = 70;
-	gdLength = 110;
-	gdXOffset = gdLength-29;
-	gdYOffset = 0;
 
-echo("gdOffset", gdOffset);
+
 
 	union() {
 		difference() {
@@ -258,10 +259,11 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 
 	difference() {
 		union() {
-			boundingBox(boardType = boardType, height = wall, offset = wall + offset, cornerRadius = wall);
+
+			boundingBox(boardType = boardType, height = wall, offset = wall + offset, include=PCB, cornerRadius = wall);
 
 			translate([0, 0, -wall * 0.5])
-				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, cornerRadius = wall);
+				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall);
 		
 			//Lid clips
 			translate([0, enclosureDepth * 0.75 - (offset + wall), 0]) {
@@ -279,12 +281,16 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 			}*/
 
             //Gameduino
-		    translate([gdXOffset,gdYOffset,gdOffset]){
+		    translate([gdXOffset,gdYOffset,0]){
 			    rotate([0,0,90]) { 
 				    difference(){
 
-                        roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
+                        union() {
+                            roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), wall], cornerRadius=wall);
 
+                            translate([0.5+wall, 0.5+wall, -wall * 0.5])
+                                roundedCube( [gdWidth-0.5,gdLength-0.5, wall*0.5], cornerRadius=wall);
+                            }
                         //TODO: screen cutout
                     }
 			    }
