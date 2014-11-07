@@ -24,10 +24,11 @@ include <pins.scad>
 
 gdWidth = 70;
 gdLength = 110;
-gdXOffset = gdLength-29;
-gdYOffset = 0;
+gdXOffset = gdLength-36;
+gdYOffset = -1;
 
-enclosureLid(MEGA2560);
+//enclosureLid(MEGA2560);
+enclosure(MEGA2560);
 
 //Constructs a roughed out arduino board
 //Current only USB, power and headers
@@ -182,23 +183,8 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 			    rotate([0,0,90]) { 
 				    difference(){
 					    //Gameduino Box
-					    //boundingBox(boardType=boardType,height = gameduinoHeight,offset=wall+offset, cornerRadius=wall);
-
-                        
-                        //hull()    {
                         roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
-
-                        //add support underneath
-
-/*
-                        translate([0,-enclosureWidth+gdXOffset+(wall*2),0])
-                            rotate([-90,0,-90])
-                                minkowski() {
-                                	prism(gdWidth+(wall*2),gdXOffset-enclosureWidth+(wall*2) , gdOffset); //l,w,h
-                                    circle(r=wall,h=1);
-                                }
-                        }
-*/                      
+                  
 					    //Interior of Gameduino box
 					    translate([ wall, wall, wall]) {
 						    //boundingBox(boardType = boardType, height = gameduinoHeight, offset = offset, cornerRadius = wall);
@@ -211,7 +197,6 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 
             //Removing main box section from Gameduino box
        		boundingBox(boardType = boardType, height = enclosureHeight+gdOffset, offset = offset, include=PCB, cornerRadius = wall);
-
 
         }
         
@@ -237,7 +222,7 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
         rotate([-90,0,180]) {
             
             minkowski() {
-               	prism(gdWidth,gdOffset+wall+cornerRadius+1.49 , gdOffset); //l,w,h
+               	prism(gdWidth,gdOffset+wall+cornerRadius+1.49+7 , gdOffset); //l,w,h
     
                 translate([0,1,0])
 	                rotate([90,90,0])
