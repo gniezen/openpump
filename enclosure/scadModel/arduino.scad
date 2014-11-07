@@ -22,14 +22,7 @@
 
 include <pins.scad>
 
-gdHeight = enclosureHeight *0.4;
-gdOffset = (enclosureHeight * 0.7)-wall;
-gdWidth = 70;
-gdLength = 110;
-gdXOffset = gdLength-32;
-gdYOffset = 0;
-
-enclosureLid(MEGA2560);
+enclosure(MEGA2560);
 
 //Constructs a roughed out arduino board
 //Current only USB, power and headers
@@ -130,6 +123,15 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 	enclosureWidth = pcbDim[0] + (wall + offset) * 2;
 	enclosureDepth = pcbDim[1] + (wall + offset) * 2;
 	enclosureHeight = boardDim[2] + wall + standOffHeight + heightExtension;
+
+	gdHeight = enclosureHeight *0.4;
+	gdOffset = (enclosureHeight * 0.7)-wall;
+	gdWidth = 70;
+	gdLength = 110;
+	gdXOffset = gdLength-29;
+	gdYOffset = 0;
+
+echo("gdOffset", gdOffset);
 
 	union() {
 		difference() {
@@ -234,7 +236,7 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
         rotate([-90,0,180]) {
             
             minkowski() {
-               	prism(gdWidth,gdOffset+(wall*2)+cornerRadius+1 , gdOffset); //l,w,h
+               	prism(gdWidth,gdOffset+wall+cornerRadius+1.49 , gdOffset); //l,w,h
     
                 translate([0,1,0])
 	                rotate([90,90,0])
