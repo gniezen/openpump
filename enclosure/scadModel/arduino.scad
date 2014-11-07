@@ -22,11 +22,14 @@
 
 include <pins.scad>
 
-difference() {
-	enclosure(MEGA2560);
-	translate([-50,-50,-20])
-	cube([200,200,50]);
-}
+gdHeight = enclosureHeight *0.4;
+gdOffset = (enclosureHeight * 0.7)-wall;
+gdWidth = 70;
+gdLength = 110;
+gdXOffset = gdLength-32;
+gdYOffset = 0;
+
+enclosureLid(MEGA2560);
 
 //Constructs a roughed out arduino board
 //Current only USB, power and headers
@@ -127,13 +130,6 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
 	enclosureWidth = pcbDim[0] + (wall + offset) * 2;
 	enclosureDepth = pcbDim[1] + (wall + offset) * 2;
 	enclosureHeight = boardDim[2] + wall + standOffHeight + heightExtension;
-
-    gdHeight = enclosureHeight *0.4;
-    gdOffset = (enclosureHeight * 0.7)-wall;
-    gdWidth = 70;
-    gdLength = 110;
-    gdXOffset = gdLength-32;
-    gdYOffset = 0;
 
 	union() {
 		difference() {
@@ -272,13 +268,26 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 				translate([offset + boardDim[0], 0, 0])
 					rotate([0, 180, 270]) clip(clipHeight = 10);
 			}
-		
+		/*
 			translate([0, enclosureDepth * 0.25 - (offset + wall), 0]) {
 				translate([-offset, 0, 0])
 					rotate([0, 180, 90]) clip(clipHeight = 10);
 				translate([offset + dimensions[0], 0, 0])
 					rotate([0, 180, 270]) clip(clipHeight = 10);
-			}
+			}*/
+
+            //Gameduino
+		    translate([gdXOffset,gdYOffset,gdOffset]){
+			    rotate([0,0,90]) { 
+				    difference(){
+
+                        roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), gdHeight], cornerRadius=wall);
+
+                        //TODO: screen cutout
+                    }
+			    }
+		    }
+
 
 		}
 	}
