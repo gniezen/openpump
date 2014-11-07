@@ -257,13 +257,51 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 	enclosureWidth = pcbDim[0] + (wall + offset) * 2;
 	enclosureDepth = pcbDim[1] + (wall + offset) * 2;
 
+    prismAdj = enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5;
+    prismOpp = 20;
+    prismAngle = atan(prismOpp/prismAdj);
+
 	difference() {
 		union() {
 
 			boundingBox(boardType = boardType, height = wall, offset = wall + offset, include=PCB, cornerRadius = wall);
 
+            translate([enclosureWidth-(wall*2)-cornerRadius,gdLength-(wall*2)+0.6,wall])
+                rotate([90,0,-90]) {
+
+                    difference() {
+                        minkowski() {
+                            prism(enclosureWidth-(cornerRadius*2), prismAdj, prismOpp); 
+
+                            echo("X ",enclosureWidth-(cornerRadius*2));
+                            echo("Y ",enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5);
+
+                            translate([0,1,0])
+            	                rotate([90,90,0])
+                                   	cylinder(r=cornerRadius,h=1,$fn=32);
+                
+                        }
+
+                        //cable cutout
+                        translate([-10,5,30])
+                            rotate([0,90,0])
+                                cylinder(h=20,r=3);
+                        
+
+
+                        //encoder cutout
+                        translate([0,-20,40])  
+                            rotate([prismAngle+180,90,270])
+                                resize([6.2,7,0], auto=true)
+                                    linear_extrude(height=100)
+                                        import("rotary.dxf");
+                    }
+                }
+
+
+
 			translate([0, 0, -wall * 0.5])
-				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall);
+   				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall);
 		
 			//Lid clips
 			translate([0, enclosureDepth * 0.75 - (offset + wall), 0]) {
@@ -296,13 +334,27 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 
 		}
 
-        //TODO: screen cutout
+        //screen cutout
         translate([gdXOffset,gdYOffset,0]){
 		    rotate([0,0,90]) { 
                     translate([wall+2.5,wall+1.5,-wall])                        
                     roundedCube( [gdWidth-5,gdLength-3, (wall*3)], cornerRadius=wall);
             }
         }
+
+
+        translate([enclosureWidth-(wall*2)-2-cornerRadius,gdLength-(wall*2)+0.6,wall+1.49])
+            rotate([90,0,-90]) {
+
+                //prism cutout
+                translate([wall,-wall*2,1.4])
+                    prism(enclosureWidth-(cornerRadius*2)-wall*2-1,enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , 20); 
+                
+
+            }
+
+
+
 
 	}
 }
