@@ -283,21 +283,27 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
             //Gameduino
 		    translate([gdXOffset,gdYOffset,0]){
 			    rotate([0,0,90]) { 
-				    difference(){
-
                         union() {
                             roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), wall], cornerRadius=wall);
 
                             translate([0.5+wall, 0.5+wall, -wall * 0.5])
                                 roundedCube( [gdWidth-0.5,gdLength-0.5, wall*0.5], cornerRadius=wall);
                             }
-                        //TODO: screen cutout
-                    }
+
 			    }
 		    }
 
 
 		}
+
+        //TODO: screen cutout
+        translate([gdXOffset,gdYOffset,0]){
+		    rotate([0,0,90]) { 
+                    translate([wall+2.5,wall+1.5,-wall])                        
+                    roundedCube( [gdWidth-5,gdLength-3, (wall*3)], cornerRadius=wall);
+            }
+        }
+
 	}
 }
 
