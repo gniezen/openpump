@@ -128,8 +128,8 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
     gdOffset = (enclosureHeight * 0.7)-wall;
     gdWidth = 68;
     gdLength = 106;
-    gdXOffset = gdLength-13;
-    gdYOffset = 35-wall-offset;
+    gdXOffset = gdLength-32;
+    gdYOffset = 0;
 
 	union() {
 		difference() {
@@ -234,7 +234,7 @@ module enclosure(boardType = UNO, wall = 3, offset = 3, heightExtension = 10, co
         rotate([-90,0,180]) {
             
             minkowski() {
-               	prism(gdWidth,offset+1+wall+cornerRadius , gdOffset); //l,w,h
+               	prism(gdWidth,gdOffset+(wall*2)+cornerRadius+1 , gdOffset); //l,w,h
     
                 translate([0,1,0])
 	                rotate([90,90,0])
