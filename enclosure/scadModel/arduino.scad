@@ -242,8 +242,8 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 	enclosureWidth = pcbDim[0] + (wall + offset) * 2;
 	enclosureDepth = pcbDim[1] + (wall + offset) * 2;
 
-    prismAdj = enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5;
-    prismOpp = 20;
+    prismAdj = enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)+4.5;
+    prismOpp = 25;
     prismAngle = atan(prismOpp/prismAdj);
 
 	difference() {
@@ -268,7 +268,7 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
                         translate([-10,5,20])
                             rotate([0,90,0])
                                 //cylinder(h=20,r=3);
-                        		   cube([10,5,20]);
+                        		   cube([15,6,20]);
 
 
                         //encoder cutout
@@ -281,18 +281,20 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
                 }
 
 
+/*
 
+		// Lid lip
 			translate([0, 0, -wall * 0.5])
-   				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall);
+   				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall); */
 		
 			//Lid clips
-        
+       /* 
 			translate([0, enclosureDepth * 0.75 - (offset + wall), 0]) {
 				translate([-offset, 0, 0])
 					rotate([0, 180, 90]) clip(clipHeight = 10);
 				translate([offset + boardDim[0], 0, 0])
 					rotate([0, 180, 270]) clip(clipHeight = 10);
-			} 
+			} */
 		/*
 			translate([0, enclosureDepth * 0.25 - (offset + wall), 0]) {
 				translate([-offset, 0, 0])
@@ -307,8 +309,11 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
                         union() {
                             roundedCube( [gdWidth+(wall*2),gdLength+(wall*2), wall], cornerRadius=wall);
 
+							//Gameduino lip
+							/*
                             translate([0.5+wall, 0.5+wall, -wall * 0.5])
-                                roundedCube( [gdWidth-0.5,gdLength-0.5, wall*0.5], cornerRadius=wall);
+                                roundedCube( [gdWidth-0.5,gdLength-0.5, wall*0.5], cornerRadius=wall);  
+							*/
                             }
 
 			    }
@@ -321,17 +326,17 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
         translate([gdXOffset,gdYOffset,0]){
 		    rotate([0,0,90]) { 
                     translate([wall+2.5,wall+1.5,-wall])                        
-                    roundedCube( [gdWidth-5,gdLength-3, (wall*3)], cornerRadius=wall);
+                    roundedCube( [gdWidth-10,gdLength-3, (wall*3)], cornerRadius=wall);
             }
         }
 
 
-        translate([enclosureWidth-(wall*2)-2-cornerRadius,gdLength-(wall*2)+0.6,wall+1.49])
+        translate([3+enclosureWidth-(wall*2)-2-cornerRadius,gdLength-(wall*2)+0.6,wall+1.49])
             rotate([90,0,-90]) {
 
                 //prism cutout
                 translate([wall,(-wall*2),1.4])
-                    prism(enclosureWidth-(cornerRadius*2)-wall*2-1,3+enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , prismOpp+3); 
+                    prism(6+enclosureWidth-(cornerRadius*2)-wall*2-1,10+enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , prismOpp+3); 
                 
 
             }
