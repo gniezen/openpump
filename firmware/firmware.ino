@@ -23,8 +23,8 @@
 
 #include "default_assets.h"
 
-int dirpin = 30;
-int steppin = 32;
+int dirpin =  24; 
+int steppin = 22;
 
 // Rotary encoder best performance: both pins have interrupt capability
 Encoder knobLeft(18, 19);
