@@ -258,9 +258,6 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
                         minkowski() {
                             prism(enclosureWidth-(cornerRadius*2), prismAdj, prismOpp); 
 
-                            echo("X ",enclosureWidth-(cornerRadius*2));
-                            echo("Y ",enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5);
-
                             translate([0,1,0])
             	                rotate([90,90,0])
                                    	cylinder(r=cornerRadius,h=1,$fn=32);
@@ -268,14 +265,14 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
                         }
 
                         //cable cutout
-                        translate([-10,5,30])
+                        translate([-10,5,20])
                             rotate([0,90,0])
-                                cylinder(h=20,r=3);
-                        
+                                //cylinder(h=20,r=3);
+                        		   cube([10,5,20]);
 
 
                         //encoder cutout
-                        translate([0,-20,40])  
+                        translate([0,-30,40])  
                             rotate([prismAngle+180,90,270])
                                 resize([6.2,7,0], auto=true)
                                     linear_extrude(height=100)
@@ -289,13 +286,13 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
    				boundingBox(boardType = boardType, height = wall * 0.5, offset = offset - 0.5, include=PCB, cornerRadius = wall);
 		
 			//Lid clips
-        /*
+        
 			translate([0, enclosureDepth * 0.75 - (offset + wall), 0]) {
 				translate([-offset, 0, 0])
 					rotate([0, 180, 90]) clip(clipHeight = 10);
 				translate([offset + boardDim[0], 0, 0])
 					rotate([0, 180, 270]) clip(clipHeight = 10);
-			} */
+			} 
 		/*
 			translate([0, enclosureDepth * 0.25 - (offset + wall), 0]) {
 				translate([-offset, 0, 0])
@@ -333,8 +330,8 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
             rotate([90,0,-90]) {
 
                 //prism cutout
-                translate([wall,-wall*2,1.4])
-                    prism(enclosureWidth-(cornerRadius*2)-wall*2-1,enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , 20); 
+                translate([wall,(-wall*2),1.4])
+                    prism(enclosureWidth-(cornerRadius*2)-wall*2-1,3+enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , prismOpp+3); 
                 
 
             }
