@@ -251,34 +251,27 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
 
 			boundingBox(boardType = boardType, height = wall, offset = wall + offset, include=PCB, cornerRadius = wall);
 
-            translate([enclosureWidth-(wall*2)-cornerRadius,gdLength-(wall*2)+0.6,wall])
-                rotate([90,0,-90]) {
+            translate([-wall*2,gdWidth-wall-1.5,wall])
 
                     difference() {
-                        minkowski() {
-                            prism(enclosureWidth-(cornerRadius*2), prismAdj, prismOpp); 
 
-                            translate([0,1,0])
-            	                rotate([90,90,0])
-                                   	cylinder(r=cornerRadius,h=1,$fn=32);
-                
-                        }
+ 							//Encoder panel cutout
+							roundedCube( [enclosureWidth,prismAdj+(wall*2), prismOpp], cornerRadius=wall);
 
                         //cable cutout
-                        translate([-10,5,20])
-                            rotate([0,90,0])
-                                //cylinder(h=20,r=3);
+                        translate([enclosureWidth-23,prismAdj+10,3])
+                            rotate([90,0,0])
                         		   cube([15,6,20]);
 
 
                         //encoder cutout
-                        translate([0,-30,40])  
-                            rotate([prismAngle+180,90,270])
+                        translate([enclosureWidth/2-3.1,prismAdj/2-3.5,0])  
+                            //rotate([prismAngle+180,90,270])
                                 resize([6.2,7,0], auto=true)
                                     linear_extrude(height=100)
                                         import("rotary.dxf");
                     }
-                }
+
 
 
 /*
@@ -330,19 +323,11 @@ module enclosureLid( boardType = UNO, wall = 3, offset = 3, cornerRadius = 3, ve
             }
         }
 
+		//encoder panel cutout
+		 translate([-wall,gdWidth-1.5,-wall*2]) {
 
-        translate([3+enclosureWidth-(wall*2)-2-cornerRadius,gdLength-(wall*2)+0.6,wall+1.49])
-            rotate([90,0,-90]) {
-
-                //prism cutout
-                translate([wall,(-wall*2),1.4])
-                    prism(6+enclosureWidth-(cornerRadius*2)-wall*2-1,10+enclosureDepth-gdWidth-(wall*2)-(cornerRadius*2)-0.5-wall*2 , prismOpp+3); 
-                
-
-            }
-
-
-
+			roundedCube( [enclosureWidth-(wall*2),prismAdj, prismOpp+(wall*2)], cornerRadius=wall);
+        }
 
 	}
 }
