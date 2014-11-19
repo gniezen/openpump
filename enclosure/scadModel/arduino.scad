@@ -1,6 +1,6 @@
-// Arduino connectors library
 //
-// Copyright (c) 2013 Kelly Egan
+// OpenPump Controller Enclosure, Copyright (c) 2014 Swansea University
+// Arduino connectors library, Copyright (c) 2013 Kelly Egan
 //
 // The MIT License (MIT)
 //
